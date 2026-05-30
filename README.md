@@ -253,70 +253,74 @@ keywordScore   = Jaccard(resumeKeywords, jdKeywords) x 100
 ---
 
 ## Project Structure
-resume-screener/
-|-- backend/
-|   |-- src/
-|   |   |-- config/
-|   |   |   |-- database.js          (Prisma singleton client)
-|   |   |-- controllers/
-|   |   |   |-- candidateController.js
-|   |   |   |-- jobDescriptionController.js
-|   |   |   |-- resumeController.js
-|   |   |-- middleware/
-|   |   |   |-- errorHandler.js
-|   |   |   |-- upload.js
-|   |   |   |-- validate.js
-|   |   |-- routes/
-|   |   |   |-- candidates.js
-|   |   |   |-- jobDescriptions.js
-|   |   |   |-- resumes.js
-|   |   |-- services/
-|   |   |   |-- jdService.js
-|   |   |   |-- parserService.js
-|   |   |   |-- scoringService.js
-|   |   |-- utils/
-|   |       |-- apiResponse.js
-|   |       |-- textUtils.js
-|   |-- prisma/
-|   |   |-- schema.prisma
-|   |-- uploads/
-|   |-- .env
-|   |-- package.json
-|   |-- server.js
-|
-|-- frontend/
-|-- src/
-|   |-- api/
-|   |   |-- index.js
-|   |-- components/
-|   |   |-- candidates/
-|   |   |   |-- CandidateCard.jsx
-|   |   |-- layout/
-|   |   |   |-- Navbar.jsx
-|   |   |-- ui/
-|   |   |   |-- Badge.jsx
-|   |   |   |-- LoadingSpinner.jsx
-|   |   |   |-- ScoreRing.jsx
-|   |   |-- upload/
-|   |       |-- JDInput.jsx
-|   |       |-- ResumeDropzone.jsx
-|   |-- context/
-|   |   |-- AppContext.jsx
-|   |-- pages/
-|   |   |-- HomePage.jsx
-|   |   |-- NotFound.jsx
-|   |   |-- ResultsPage.jsx
-|   |   |-- UploadPage.jsx
-|   |-- App.jsx
-|   |-- index.css
-|   |-- main.jsx
-|-- .env
-|-- index.html
-|-- package.json
-|-- tailwind.config.js
-|-- vite.config.js
 
----
+```text
+resume-screener/
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.js
+│   │   ├── controllers/
+│   │   │   ├── candidateController.js
+│   │   │   ├── jobDescriptionController.js
+│   │   │   └── resumeController.js
+│   │   ├── middleware/
+│   │   │   ├── errorHandler.js
+│   │   │   ├── upload.js
+│   │   │   └── validate.js
+│   │   ├── routes/
+│   │   │   ├── candidates.js
+│   │   │   ├── jobDescriptions.js
+│   │   │   └── resumes.js
+│   │   ├── services/
+│   │   │   ├── jdService.js
+│   │   │   ├── parserService.js
+│   │   │   └── scoringService.js
+│   │   └── utils/
+│   │       ├── apiResponse.js
+│   │       └── textUtils.js
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── uploads/
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── index.js
+│   │   ├── components/
+│   │   │   ├── candidates/
+│   │   │   │   └── CandidateCard.jsx
+│   │   │   ├── layout/
+│   │   │   │   └── Navbar.jsx
+│   │   │   ├── ui/
+│   │   │   │   ├── Badge.jsx
+│   │   │   │   ├── LoadingSpinner.jsx
+│   │   │   │   └── ScoreRing.jsx
+│   │   │   └── upload/
+│   │   │       ├── JDInput.jsx
+│   │   │       └── ResumeDropzone.jsx
+│   │   ├── context/
+│   │   │   └── AppContext.jsx
+│   │   ├── pages/
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── NotFound.jsx
+│   │   │   ├── ResultsPage.jsx
+│   │   │   └── UploadPage.jsx
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env
+│   ├── index.html
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+├── README.md
+└── .gitignore
+```
 
 ## Local Setup
 
