@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model JobDescription {
+  id          String   @id @default(uuid())
+  title       String
+  content     String   @db.Text
+  skills      String[]
+  experience  String?
+  education   String?
+  keywords    String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  analyses    AnalysisResult[]
+
+  @@map("job_descriptions")
+}
+
+model Candidate {
+  id          String   @id @default(uuid())
+  name        String
+  email       String?
+  phone       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  resumes     Resume[]
+  analyses    AnalysisResult[]
+
+  @@map("candidates")
+}
+
+model Resume {
+  id           String   @id @default(uuid())
+  candidateId  String
+  fileName     String
+  filePath     String
+  fileType     String
+  rawText      String   @db.Text
+  skills       String[]
+  experience   String?
+  education    String?
+  keywords     String[]
+  yearsExp     Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  candidate    Candidate        @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  analyses     AnalysisResult[]
+
+  @@map("resumes")
+}
+
+model AnalysisResult {
+  id              String   @id @default(uuid())
+  resumeId        String
+  jobDescId       String
+  candidateId     String
+  totalScore      Float
+  skillScore      Float
+  experienceScore Float
+  educationScore  Float
+  keywordScore    Float
+  matchingSkills  String[]
+  missingSkills   String[]
+  rank            Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  resume          Resume         @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+  jobDescription  JobDescription @relation(fields: [jobDescId], references: [id], onDelete: Cascade)
+  candidate       Candidate      @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@unique([resumeId, jobDescId])
+  @@map("analysis_results")
+}
